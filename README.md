@@ -7,4 +7,5 @@ NEXT STEPS BACKLOG
 
 - Password Reset Form
 
-- Roles
+- Roles & Auth
+
