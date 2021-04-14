@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { useMutation, useQuery } from '@apollo/client';
 import Form from "./styles/Form";
-import Error from "./ErrorMessage";
+import DisplayError from "./ErrorMessage";
 import {CURRENT_USER_QUERY, useUser} from "./User";
 import useForm from '../lib/useForm';
 import PhoneInput from 'react-phone-input-2'
@@ -66,15 +66,12 @@ export default function Account() {
     updateUser,
     { data: updateData, error: updateError, loading: updateLoading },
   ] = useMutation(UPDATE_USER_MUTATION);
-  // console.log(error);
-
+  
   // 2.5 Create some state for the form inputs:
   const { inputs, handleChange, clearForm, resetForm } = useForm(data?.authenticatedItem);
-  console.log(inputs);
-
   async function handleSubmit(e) {
     e.preventDefault(); // stop the form from submitting
-    console.log(inputs);
+    //console.log(e);
     //const res = await reset().catch(console.error);
     // console.log(res);
     // console.log({ data, loading, error });
@@ -97,7 +94,7 @@ export default function Account() {
   return(
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Your informations</h2>
-      <Error error={error} />
+      <DisplayError error={error || updateError} />
       <fieldset>
         <label htmlFor="text">
           Name
