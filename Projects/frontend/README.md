@@ -8,8 +8,9 @@ With this template you can start a web site with :
 - Account form
 - Backend CMS with Keystone
 
-You will need to create an account on [mongoDB Cloud](https://account.mongodb.com/)
-Rename backend/sample.env to .env and adjuste you configuration
+You will need to 
+- Create an account on [mongoDB Cloud](https://account.mongodb.com/)
+- Rename backend/sample.env to .env and adjuste you configuration
 
 
 ## BackEnd
@@ -57,7 +58,8 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 ## Next Steps Backlog :
 
 - Password Change on user account ✅
- - Include README.md on Home Page ✅
+- Include README.md on Home Page ✅
+- Fix Signout With useForm ✅
 - Fix Nav bar when resize window width
 - Password Reset Form
 - Roles
