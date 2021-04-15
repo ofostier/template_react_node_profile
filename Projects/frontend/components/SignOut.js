@@ -7,6 +7,11 @@ const SIGN_OUT_MUTATION = gql`
     endSession
   }
 `;
+function Test() {
+  console.log(toto)
+}
+// TODO: [TRNP-5] Fix Error when SIGNOUT from ACCOUNT PAGE
+// génerating Error with lib/useForm.js
 
 export default function SignOut() {
   const [signout] = useMutation(SIGN_OUT_MUTATION, {

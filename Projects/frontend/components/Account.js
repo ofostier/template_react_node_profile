@@ -4,7 +4,9 @@ import Form from "./styles/Form";
 import DisplayError from "./ErrorMessage";
 import {CURRENT_USER_QUERY, useUser} from "./User";
 import useForm from '../lib/useForm';
-import PhoneInput from 'react-phone-input-2';
+//import PhoneInput from 'react-phone-input-2';
+// import PhoneInputWithCountry from 'react-phone-number-input/react-hook-form'
+// import 'react-phone-number-input/style.css'
 import React, {useState} from 'react';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
@@ -85,6 +87,7 @@ export default function Account() {
   
   // 2.5 Create some state for the form inputs:
   const { inputs, handleChange, clearForm, resetForm } = useForm(data?.authenticatedItem);
+
   async function handleSubmit(e) {
 
     e.preventDefault(); // stop the form from submitting
@@ -111,14 +114,14 @@ export default function Account() {
       NotificationManager.success('Success message', 'Informattions Saved !');
       setPasswordError({message:"Greaaat !! Informations saved !"});   
     }
-    
-
   }
   
 
   if (loading) return <p>loading...</p>;
   
   return(
+    // TODO: [TRNP-6] Add preformated field for phone num
+
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Your informations</h2>
       <DisplayError error={error || updateError} />
@@ -193,6 +196,7 @@ export default function Account() {
             onChange={handleChange}
           />
         </label>
+        
         <button type="submit">Save</button>
       </fieldset>
       <NotificationContainer></NotificationContainer>
