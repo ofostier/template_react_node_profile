@@ -66,7 +66,7 @@ export default function site({ page }) {
 
   function getMarkDown (){
 
-    fetch('https://raw.githubusercontent.com/ofostier/template_react_node_profile/started/Projects/frontend/README.md3')
+    fetch('https://raw.githubusercontent.com/ofostier/template_react_node_profile/started/Projects/frontend/README.md')
     .then((r) => r.text())
     .then(text  => {
       //console.log(text);
