@@ -27,6 +27,8 @@
     "prop-type": "^0.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-markdown": "^5.0.3",
+    "react-notifications": "^1.7.2",
     "react-phone-input-2": "^2.14.0",
     "styled-components": "^5.2.3",
     "use-dencrypt-effect": "^1.0.2"

@@ -24,6 +24,7 @@ export default function useForm(initial = {}) {
     if (type === 'file') {
       [value] = e.target.files;
     }
+    
     setInputs({
       // copy the existing state
       ...inputs,
@@ -40,6 +41,10 @@ export default function useForm(initial = {}) {
       Object.entries(inputs).map(([key, value]) => [key, ''])
     );
     setInputs(blankState);
+  }
+
+  function checkPassword() {
+    console.log("function check password !");
   }
 
   // return the things we want to surface from this custom hook

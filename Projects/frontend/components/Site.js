@@ -1,7 +1,12 @@
-import * as React from "react";
+import react, {useState} from "react";
 import { motion } from "framer-motion"
 import styled from 'styled-components';
+import ReactMarkdown from "react-markdown";
+//import {markdown} from '../public/README.txt';
 
+
+
+//const markDown = import('../public/README.md');
 const DivAnimation = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -12,7 +17,7 @@ const DivAnimation = styled.div`
 const Box = styled(motion.div)`
   background: black;
   border-radius: 30px;
-  width: 10px;
+  width: 10px; 
   height: 10px;
 `;
 
@@ -48,23 +53,41 @@ export const MyAnimation = () => (
     />
 )
 
+
+
 export default function site({ page }) {
 
+  const [markDown, setMarkDown] = useState();
+  //const md = require("../README.txt");
+  //const md = fetch("http://localhost:9999/public/README.txt");
+  //console.log(md)
+  //const md = getMk("YEAAA");
+  //console.log(md);
+
+  function getMarkDown (){
+
+    fetch('https://raw.githubusercontent.com/ofostier/template_react_node_profile/started/Projects/frontend/README.md3')
+    .then((r) => r.text())
+    .then(text  => {
+      //console.log(text);
+      setMarkDown(text); 
+      //return text
+    }).catch (console.error);
+  } 
+  const md = getMarkDown();
+  //console.log(markDown);
   // console.log(data, error, loading);
   //if (loading) return <p>Loading...</p>;
   //if (error) return <p>Error: {error.message}</p>;
   return (
     
+      // TODO: [TRNP-4] Render README.md on the Home page
     <div>
-      
       <DivAnimation>
         <Example></Example>
       </DivAnimation>
       Hey ! You are at home ... Or not !!
-      <h2>Next Steps Backlog :</h2>
-      <p>- Password Change on user account</p>
-      <p>- Password Reset Form</p>
-      <p>- Roles</p>
+      <ReactMarkdown source={markDown} />
     </div>
     
   );

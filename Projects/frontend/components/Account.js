@@ -4,7 +4,11 @@ import Form from "./styles/Form";
 import Error from "./ErrorMessage";
 import {CURRENT_USER_QUERY, useUser} from "./User";
 import useForm from '../lib/useForm';
-import PhoneInput from 'react-phone-input-2'
+import PhoneInput from 'react-phone-input-2';
+import React, {useState} from 'react';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
 
 const RESET_MUTATION = gql`
   mutation RESET_MUTATION(
@@ -29,34 +33,46 @@ const UPDATE_USER_MUTATION = gql`
     $name: String!
     $firstname: String
     $phone: String
+    $password: String
   ) {
     updateUser(
       id: $id
-      data: { name: $name, firstname: $firstname, phone: $phone, email: $email }
+      data: { name: $name, firstname: $firstname, phone: $phone, email: $email, password: $password }
     ) {
       id
       name
     }
   }
 `;
-const error = {};
+
+const createNotification = (type) =>{
+  return () => {
+    switch (type) {
+      case 'info':
+        console.log('info notif');
+        NotificationManager.info('Info message');
+        break;
+      case 'success':
+        NotificationManager.success('Success message', 'Informations Saved !');
+        break;
+      case 'warning':
+        NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+        break;
+      case 'error':
+        NotificationManager.error('Error message', 'Click me!', 5000, () => {
+          alert('callback');
+        });
+        break;
+    }
+  };
+}
 
 export default function Account() {
-  // const me = useUser();
-  // if (!me) return null;
-  //console.log(me);
-  // const { inputs, handleChange, resetForm } = useForm({
-  //   name: '',
-  //   firstname: '',
-  //   phone: '',
-  //   email: '',
-  //   password: '',
-  //   token,
-  // });
-  // const [reset, { data, loading, error }] = useMutation(RESET_MUTATION, {
-  //   variables: inputs,
-  // });
-  
+
+  //NotificationManager.info('Info message');
+
+  const [passwordError, setPasswordError] = useState();
+
   // 1. We need to get the current user
   const { data, error, loading } = useQuery(CURRENT_USER_QUERY);
   // console.log(data.authenticatedItem);
@@ -73,6 +89,7 @@ export default function Account() {
   console.log(inputs);
 
   async function handleSubmit(e) {
+
     e.preventDefault(); // stop the form from submitting
     console.log(inputs);
     //const res = await reset().catch(console.error);
@@ -87,8 +104,18 @@ export default function Account() {
         firstname: inputs.firstname,
         email: inputs.email,
         phone: inputs.phone,
+        password: inputs.password,
       },
-    }).catch(console.error);
+    }).catch(
+      console.error
+      );
+
+    if (res) {
+      NotificationManager.success('Success message', 'Informattions Saved !');
+      setPasswordError({message:"Greaaat !! Informations saved !"});   
+    }
+    
+
   }
   
 
@@ -155,7 +182,7 @@ export default function Account() {
             placeholder="Password"
             autoComplete="new-password"
             //value={me.password}
-            //onChange={handleChange}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="password">
@@ -166,11 +193,12 @@ export default function Account() {
             placeholder="Password"
             autoComplete="new-password"
             //value={inputs.password}
-            //onChange={handleChange}
+            onChange={handleChange}
           />
         </label>
         <button type="submit">Save</button>
       </fieldset>
+      <NotificationContainer></NotificationContainer>
     </Form>
   )
 }
