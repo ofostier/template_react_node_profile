@@ -3,7 +3,7 @@ import NProgress from 'nprogress';
 import Router from 'next/router';
 import Page from '../components/Page';
 import '../components/styles/nprogress.css';
-import "../components/styles/animation.css";
+//import "../components/styles/animation.css";
 import withData from '../lib/withData';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
