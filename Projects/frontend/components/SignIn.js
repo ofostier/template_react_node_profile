@@ -4,6 +4,23 @@ import Form from './styles/Form';
 import useForm from '../lib/useForm';
 import { CURRENT_USER_QUERY } from './User';
 import Error from './ErrorMessage';
+import styled from 'styled-components';
+
+const ForgotPasswordLinkStyle = styled.a`
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--lightGrey);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-size: 1rem;
+  font-style: "italic";
+  img {
+    margin-right: 1rem;
+  }
+  h3,
+  p {
+    margin: 0;
+  }
+`;
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -74,6 +91,9 @@ export default function SignIn() {
           />
         </label>
         <button type="submit">Sign In!</button>
+        <div>
+          <ForgotPasswordLinkStyle href="/resetpassword">(forgot password !)</ForgotPasswordLinkStyle>
+        </div>
       </fieldset>
     </Form>
   );
