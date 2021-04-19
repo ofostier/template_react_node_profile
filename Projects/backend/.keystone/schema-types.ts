@@ -87,31 +87,6 @@ export type UserWhereInput = {
   readonly phone_not_ends_with_i?: Scalars['String'] | null;
   readonly phone_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly phone_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly passwordResetToken_is_set?: Scalars['Boolean'] | null;
-  readonly passwordResetIssuedAt?: Scalars['String'] | null;
-  readonly passwordResetIssuedAt_not?: Scalars['String'] | null;
-  readonly passwordResetIssuedAt_lt?: Scalars['String'] | null;
-  readonly passwordResetIssuedAt_lte?: Scalars['String'] | null;
-  readonly passwordResetIssuedAt_gt?: Scalars['String'] | null;
-  readonly passwordResetIssuedAt_gte?: Scalars['String'] | null;
-  readonly passwordResetIssuedAt_in?: ReadonlyArray<
-    Scalars['String'] | null
-  > | null;
-  readonly passwordResetIssuedAt_not_in?: ReadonlyArray<
-    Scalars['String'] | null
-  > | null;
-  readonly passwordResetRedeemedAt?: Scalars['String'] | null;
-  readonly passwordResetRedeemedAt_not?: Scalars['String'] | null;
-  readonly passwordResetRedeemedAt_lt?: Scalars['String'] | null;
-  readonly passwordResetRedeemedAt_lte?: Scalars['String'] | null;
-  readonly passwordResetRedeemedAt_gt?: Scalars['String'] | null;
-  readonly passwordResetRedeemedAt_gte?: Scalars['String'] | null;
-  readonly passwordResetRedeemedAt_in?: ReadonlyArray<
-    Scalars['String'] | null
-  > | null;
-  readonly passwordResetRedeemedAt_not_in?: ReadonlyArray<
-    Scalars['String'] | null
-  > | null;
 };
 
 export type UserWhereUniqueInput = {
@@ -128,11 +103,7 @@ export type SortUsersBy =
   | 'email_ASC'
   | 'email_DESC'
   | 'phone_ASC'
-  | 'phone_DESC'
-  | 'passwordResetIssuedAt_ASC'
-  | 'passwordResetIssuedAt_DESC'
-  | 'passwordResetRedeemedAt_ASC'
-  | 'passwordResetRedeemedAt_DESC';
+  | 'phone_DESC';
 
 export type UserUpdateInput = {
   readonly name?: Scalars['String'] | null;
@@ -140,9 +111,6 @@ export type UserUpdateInput = {
   readonly email?: Scalars['String'] | null;
   readonly password?: Scalars['String'] | null;
   readonly phone?: Scalars['String'] | null;
-  readonly passwordResetToken?: Scalars['String'] | null;
-  readonly passwordResetIssuedAt?: Scalars['String'] | null;
-  readonly passwordResetRedeemedAt?: Scalars['String'] | null;
 };
 
 export type UsersUpdateInput = {
@@ -156,9 +124,6 @@ export type UserCreateInput = {
   readonly email?: Scalars['String'] | null;
   readonly password?: Scalars['String'] | null;
   readonly phone?: Scalars['String'] | null;
-  readonly passwordResetToken?: Scalars['String'] | null;
-  readonly passwordResetIssuedAt?: Scalars['String'] | null;
-  readonly passwordResetRedeemedAt?: Scalars['String'] | null;
 };
 
 export type UsersCreateInput = {
@@ -187,19 +152,6 @@ export type CreateInitialUserInput = {
   readonly password?: Scalars['String'] | null;
 };
 
-export type PasswordResetRequestErrorCode =
-  | 'IDENTITY_NOT_FOUND'
-  | 'MULTIPLE_IDENTITY_MATCHES';
-
-export type PasswordResetRedemptionErrorCode =
-  | 'FAILURE'
-  | 'IDENTITY_NOT_FOUND'
-  | 'MULTIPLE_IDENTITY_MATCHES'
-  | 'TOKEN_NOT_SET'
-  | 'TOKEN_MISMATCH'
-  | 'TOKEN_EXPIRED'
-  | 'TOKEN_REDEEMED';
-
 export type KeystoneAdminUIFieldMetaCreateViewFieldMode = 'edit' | 'hidden';
 
 export type KeystoneAdminUIFieldMetaListViewFieldMode = 'read' | 'hidden';
@@ -213,16 +165,7 @@ export type KeystoneAdminUISortDirection = 'ASC' | 'DESC';
 
 export type UserListTypeInfo = {
   key: 'User';
-  fields:
-    | 'id'
-    | 'name'
-    | 'firstname'
-    | 'email'
-    | 'password'
-    | 'phone'
-    | 'passwordResetToken'
-    | 'passwordResetIssuedAt'
-    | 'passwordResetRedeemedAt';
+  fields: 'id' | 'name' | 'firstname' | 'email' | 'password' | 'phone';
   backing: {
     readonly id: string;
     readonly name?: string | null;
@@ -230,9 +173,6 @@ export type UserListTypeInfo = {
     readonly email?: string | null;
     readonly password?: string | null;
     readonly phone?: string | null;
-    readonly passwordResetToken?: string | null;
-    readonly passwordResetIssuedAt?: Date | null;
-    readonly passwordResetRedeemedAt?: Date | null;
   };
   inputs: {
     where: UserWhereInput;

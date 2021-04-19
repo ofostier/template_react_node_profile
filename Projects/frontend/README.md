@@ -60,8 +60,8 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 - Password Change on user account ✅
 - Include README.md on Home Page ✅
 - Fix Signout With useForm ✅
-- Fix Nav bar when resize window width
-- Password Reset Form
+- Fix Nav bar when resize window width ✅
+- Password Reset Form ✅
 - Roles
 - And More
 
